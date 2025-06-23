@@ -101,6 +101,6 @@ class Order:
         self.product = product
         self.quantity = quantity
 
-    def total_price(self) -> float:
+    def total_price(self) -> float: #Добавить Docstring
         """Вычислить итоговую стоимость заказа."""
         return self.product.price * self.quantity
