@@ -6,7 +6,7 @@ from src.mixins import CreationPrintMixin
 
 
 class BaseProduct(ABC):
-    """Абстрактный базовый класс для всех продуктов."""
+    """Модуль с бизнес-моделями: продукты, категории, заказы."""
 
     @property
     @abstractmethod
