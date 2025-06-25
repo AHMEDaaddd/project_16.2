@@ -1,4 +1,8 @@
-"""Модуль с моделями: BaseProduct, Product, Smartphone, LawnGrass, Category, Order."""
+"""
+Модуль с бизнес-моделями: продукты, категории, заказы.
+
+Содержит классы BaseProduct, Product, Smartphone, LawnGrass, Category и Order.
+"""
 
 from abc import ABC, abstractmethod
 
@@ -68,13 +72,27 @@ class Product(CreationPrintMixin, BaseProduct):
 class Smartphone(Product):
     """Класс смартфона как подтипа продукта."""
 
-    pass
+    def __init__(
+        self, name: str, description: str, price: float, quantity: int, model: str
+    ):
+        """Создание экземпляра смартфона с моделью."""
+        super().__init__(name, description, price, quantity)
+        self.model = model
 
 
 class LawnGrass(Product):
     """Класс газонной травы как подтипа продукта."""
 
-    pass
+    def __init__(
+        self, name: str, description: str, price: float, quantity: int, country: str
+    ):
+        """
+        Создание экземпляра заказа.
+
+        Принимает продукт и количество.
+        """
+        super().__init__(name, description, price, quantity)
+        self.country = country
 
 
 class Category:
@@ -101,6 +119,6 @@ class Order:
         self.product = product
         self.quantity = quantity
 
-    def total_price(self) -> float: #Добавить Docstring
+    def total_price(self) -> float:
         """Вычислить итоговую стоимость заказа."""
         return self.product.price * self.quantity
