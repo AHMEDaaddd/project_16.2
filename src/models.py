@@ -1,4 +1,8 @@
-"""Модуль с моделями: BaseProduct, Product, Smartphone, LawnGrass, Category, Order."""
+"""
+Модуль с бизнес-моделями: продукты, категории, заказы.
+
+Содержит классы BaseProduct, Product, Smartphone, LawnGrass, Category и Order.
+"""
 
 from abc import ABC, abstractmethod
 
@@ -6,7 +10,7 @@ from src.mixins import CreationPrintMixin
 
 
 class BaseProduct(ABC):
-    """Абстрактный базовый класс для всех продуктов."""
+    """Модуль с бизнес-моделями: продукты, категории, заказы."""
 
     @property
     @abstractmethod
@@ -68,13 +72,27 @@ class Product(CreationPrintMixin, BaseProduct):
 class Smartphone(Product):
     """Класс смартфона как подтипа продукта."""
 
-    pass
+    def __init__(
+        self, name: str, description: str, price: float, quantity: int, model: str
+    ):
+        """Создание экземпляра смартфона с моделью."""
+        super().__init__(name, description, price, quantity)
+        self.model = model
 
 
 class LawnGrass(Product):
     """Класс газонной травы как подтипа продукта."""
 
-    pass
+    def __init__(
+        self, name: str, description: str, price: float, quantity: int, country: str
+    ):
+        """
+        Создание экземпляра заказа.
+
+        Принимает продукт и количество.
+        """
+        super().__init__(name, description, price, quantity)
+        self.country = country
 
 
 class Category:
@@ -94,7 +112,7 @@ class Category:
 
 
 class Order:
-    """Класс заказа, содержащий один продукт и количество."""
+    """Класс заказа: один товар, количество и расчет итоговой стоимости."""
 
     def __init__(self, product: Product, quantity: int):
         """Инициализация заказа."""

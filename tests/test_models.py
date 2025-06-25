@@ -10,13 +10,15 @@ def test_product_creation():
 
 
 def test_smartphone_is_product():
-    phone = Smartphone("iPhone", "desc", 500.0, 2)
+    phone = Smartphone("iPhone", "desc", 500.0, 2, "15 Pro")
     assert isinstance(phone, Product)
+    assert phone.model == "15 Pro"
 
 
 def test_lawngrass_is_product():
-    grass = LawnGrass("Трава", "описание", 120.0, 10)
+    grass = LawnGrass("Трава", "описание", 120.0, 10, "Голландия")
     assert isinstance(grass, Product)
+    assert grass.country == "Голландия"
 
 
 def test_category_counting():
@@ -33,3 +35,12 @@ def test_order_total():
     p = Product("Phone", "desc", 15000.0, 3)
     order = Order(p, 2)
     assert order.total_price() == 30000.0
+
+
+def test_creation_print_mixin_output(capsys):
+    """Тест миксина: вывод информации при создании объекта."""
+    product = Product("TestName", "TestDesc", 999.0, 1)
+    captured = capsys.readouterr()
+    assert "Создан объект Product с параметрами" in captured.out
+    assert "name='TestName'" in captured.out
+    assert "price=999.0" in captured.out
